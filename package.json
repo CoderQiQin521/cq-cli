@@ -13,8 +13,13 @@
   "author": "coderQiQin",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
     "commander": "^5.0.0",
     "del": "^5.1.0",
-    "inquirer": "^7.1.0"
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^7.1.0",
+    "ncp": "^2.0.0",
+    "ora": "^4.0.4",
+    "shelljs": "^0.8.4"
   }
 }
