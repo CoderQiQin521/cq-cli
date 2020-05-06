@@ -24,7 +24,7 @@ const existDir = async (projectName) => {
       await del(createName, {
         force: true,
       })
-      fs.mkdirSync(createName)
+      fs.mkdirSync(createName, { recursive: true })
       return createName
     } else {
       console.log('您取消了命令')

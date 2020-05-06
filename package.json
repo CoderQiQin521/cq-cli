@@ -1,6 +1,6 @@
 {
   "name": "cli-cq",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "命令行脚手架",
   "main": "index.js",
   "bin": {
