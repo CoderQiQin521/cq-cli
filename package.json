@@ -1,16 +1,18 @@
 {
   "name": "cq-cli",
   "version": "0.0.1",
-  "description": "自己使用的命令行交互界面",
+  "description": "命令行脚手架",
   "main": "index.js",
   "bin": {
-    "mycli": "./bin/index.js"
+    "cq-cli": "./bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "coderQiQin",
+  "keywords": [
+    "cli"
+  ],
+  "author": "coderqiqin@aliyun.com",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",

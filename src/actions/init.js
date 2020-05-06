@@ -12,7 +12,7 @@ const baseUrl = 'https://api.github.com'
 
 const existDir = async (projectName) => {
   const dir = path.resolve('.')
-  const createName = path.join(dir, projectName)
+  const createName = path.posix.join(dir, projectName)
   if (fs.existsSync(createName)) {
     const result = await Inquirer.prompt({
       type: 'confirm',
@@ -27,6 +27,7 @@ const existDir = async (projectName) => {
       fs.mkdirSync(createName)
       return createName
     } else {
+      console.log('您取消了命令')
       process.exit(1)
     }
   }
@@ -45,10 +46,10 @@ const fetchRepoList = async () => {
   return repolist
 }
 
-const waitLoading = async (fn, message) => {
+const waitLoading = (fn, message) => async (...arg) => {
   const spinner = ora(message)
   spinner.start()
-  const result = await fn()
+  const result = await fn(...arg)
   spinner.succeed()
   return result
 }
@@ -65,8 +66,10 @@ module.exports = async (projectName) => {
     choices: repos,
   })
   let repoUrl = `CoderQiQin521/${repo}`
-  await downloadGitRepo(repoUrl, dirPath)
-  // // 3.安装依赖
+  await waitLoading(downloadGitRepo, '下载远程仓库模版...')(repoUrl, dirPath)
+  // 3.安装依赖
   shelljs.cd(dirPath)
   shelljs.exec('npm install')
+  console.log(`cd ${projectName}`)
+  console.log('npm run serve')
 }
