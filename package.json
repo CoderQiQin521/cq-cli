@@ -1,10 +1,10 @@
 {
-  "name": "cq-cli",
+  "name": "cli-cq",
   "version": "0.0.1",
   "description": "命令行脚手架",
   "main": "index.js",
   "bin": {
-    "cq-cli": "./bin/index.js"
+    "cli-cq": "./bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

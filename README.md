@@ -1,3 +1,3 @@
 ## run
 
-`cq-cli init xxx`
+`cli-cq init xxx`
