@@ -27,7 +27,6 @@ const existDir = async (projectName) => {
       fs.mkdirSync(createName)
       return createName
     } else {
-      console.log('取消了操作')
       process.exit(1)
     }
   }
@@ -55,23 +54,19 @@ const waitLoading = async (fn, message) => {
 }
 
 module.exports = async (projectName) => {
-  console.log('projectName: ', projectName)
   // 1.创建目录
   const dirPath = await existDir(projectName)
   // 2.下载模版
   const repos = await fetchRepoList()
-  console.log('repos: ', repos)
   const { repo } = await Inquirer.prompt({
     type: 'list',
     name: 'repo',
     message: '请选择项目模版',
     choices: repos,
   })
-  console.log('repo: ', repo)
   let repoUrl = `CoderQiQin521/${repo}`
-  // let repoUrl = `gitee:CoderQiQin/${repo}`
   await downloadGitRepo(repoUrl, dirPath)
   // // 3.安装依赖
-  // shelljs.cd(dirPath)
-  // shelljs.exec('npm install')
+  shelljs.cd(dirPath)
+  shelljs.exec('npm install')
 }
