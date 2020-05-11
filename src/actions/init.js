@@ -2,6 +2,7 @@ const Inquirer = require('inquirer') // https://github.com/SBoudrias/Inquirer.js
 const path = require('path')
 const del = require('del')
 const fs = require('fs')
+const chalk = require('chalk')
 const { promisify } = require('util')
 const axios = require('axios')
 const downloadGitRepo = promisify(require('download-git-repo'))
@@ -70,6 +71,7 @@ module.exports = async (projectName) => {
   // 3.安装依赖
   shelljs.cd(dirPath)
   shelljs.exec('npm install')
-  console.log(`cd ${projectName}`)
-  console.log('npm run serve')
+  console.log(chalk.yellow('依赖已经安装,执行以下命令: '))
+  console.log(chalk.yellow(`1. cd ${projectName}`))
+  console.log(chalk.yellow('2. npm run serve'))
 }

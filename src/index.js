@@ -1,6 +1,8 @@
 const { program } = require('commander') // https://github.com/tj/commander.js/blob/HEAD/Readme_zh-CN.md
 const { version } = require('../package.json')
 const path = require('path')
+const chalk = require('chalk')
+const boxen = require('boxen') // 小面板
 
 program.version(version, '-v, --version', '查看版本')
 // .option('-c, --create', '创建一个项目')
@@ -27,12 +29,29 @@ const mapActions = {
   },
 }
 
+const BOXEN_OPTS = {
+  padding: 1,
+  margin: 1,
+  align: 'center',
+  borderColor: '#678491',
+  borderStyle: 'round',
+}
+
+function initilalizing(pkg) {
+  const message = [
+    chalk.yellow(`欢迎使用cli-cq v${version}`),
+    'https://www.npmjs.com/package/cli-cq',
+  ]
+  console.log(boxen(message.join('\n'), BOXEN_OPTS))
+}
+
 Object.keys(mapActions).forEach((key) => {
   program
     .command(key)
     .alias(mapActions[key].alias)
     .description(mapActions[key].desc)
     .action(() => {
+      initilalizing()
       if (key === '*') {
         console.log(mapActions[key].desc)
       } else {
